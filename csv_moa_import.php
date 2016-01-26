@@ -22,7 +22,7 @@ $csv_file = "SOAdetails_20160118.CSV";
 
 if (($handle = fopen($csv_file, "r")) !== FALSE) {
    fgetcsv($handle);   
-   while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+   while (($data = fgetcsv($handle, 0, "\t")) !== FALSE) {
         $num = count($data);
         for ($c=0; $c < $num; $c++) {
           $col[$c] = $data[$c];
@@ -48,12 +48,11 @@ if (($handle = fopen($csv_file, "r")) !== FALSE) {
  $col18 = $col[17];
  $col19 = $col[18];
  $col20 = $col[19];
- $col21 = $col[20];
    
 // SQL Query to insert data into DataBase
-$query = "INSERT INTO csv_moa(id, comp, customer_n, baseline, contract_no, bp_name, bp_org_name_1, buyer_name_1, buyer_name_2, email_address, project, be_name, unit, filename, birth_date, building_name, phase, unit_no, total_amt_due, total_amt_due_immediately, total_due_on) VALUES('".$col1."','".$col2."','".$col3."','".$col4."','".$col5."','".$col6."','".$col7."','".$col8."','".$col9."','".$col10."','".$col11."','".$col12."','".$col13."','".$col14."','".$col15."','".$col16."','".$col17."','".$col18."','".$col19."','".$col20."','".$col21."')";
+$query = "INSERT INTO csv_soa(comp, customer_n, baseline, contract_no, bp_name, bp_org_name_1, buyer_name_1, buyer_name_2, email_address, project, be_name, unit, filename, birth_date, building_name, phase, unit_no, total_amt_due, total_amt_due_immediately, total_due_on) VALUES('".$col1."','".$col2."','".$col3."','".$col4."','".$col5."','".$col6."','".$col7."','".$col8."','".$col9."','".$col10."','".$col11."','".$col12."','".$col13."','".$col14."','".$col15."','".$col16."','".$col17."','".$col18."','".$col19."','".$col20."')";
 $s     = mysql_query($query, $connect );
-echo $s;
+echo $query;
  }
     fclose($handle);
 }
