@@ -49,7 +49,7 @@ function import_csv($csv_file, $connect){
         }
         fclose($handle);
     }
-    echo "File data successfully imported to database!!";
+    echo "Imported ".$csv_file."<br>\n";
 }
 
 //get list of csv files that were imported
